@@ -43,7 +43,6 @@ RUN \
     conda install -c conda-forge jupyterlab-git &&\
     jupyter labextension install @jupyterlab/toc &&\
     conda install -c conda-forge ipympl &&\
-    jupyter labextension install @mflevine/jupyterlab_html &&\
     jupyter labextension install neptune-notebooks &&\
     conda install -c conda-forge ipywidgets &&\
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@2.0 &&\
@@ -56,8 +55,24 @@ RUN \
     jupyter labextension install jupyterlab-spreadsheet &&\
     clean-layer.sh
 
-COPY scripts/users_list.txt /tmp/users_list.txt
+RUN \
+    pip install jupyterlab_sql &&\
+    jupyter serverextension enable jupyterlab_sql --py --sys-prefix &&\
+    jupyter lab build &&\
+    clean-layer.sh
 
+RUN \
+    pip install pyecharts &&\
+    pip install --upgrade python-gitlab &&\
+    clean-layer.sh
+
+RUN \
+    conda install -c conda-forge xgboost &&\
+    conda install -c conda-forge lightgbm &&\
+    clean-layer.sh
+
+
+COPY scripts/users_list.txt /tmp/users_list.txt
 RUN newusers /tmp/users_list.txt &&\
     clean-layer.sh
 
