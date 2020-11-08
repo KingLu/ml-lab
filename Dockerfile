@@ -35,23 +35,23 @@ RUN \
     conda install -c conda-forge jupyterlab &&\
     mkdir -p /opt/jupyterhub/config &&\
     clean-layer.sh
-
 COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py 
 
 RUN \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\
-    conda install -c conda-forge jupyterlab-git &&\
-    jupyter labextension install @jupyterlab/toc &&\
-    conda install -c conda-forge ipympl &&\
-    jupyter labextension install neptune-notebooks &&\
-    conda install -c conda-forge ipywidgets &&\
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager@2.0 &&\
-    jupyter labextension install jupyterlab-plotly &&\
-    jupyter labextension install @jupyterlab/github &&\
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
+    jupyter labextension install @jupyterlab/toc &&\ 
     jupyter labextension install @aquirdturtle/collapsible_headings &&\
-    jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\
-    conda install -c conda-forge 'jupyterlab>=2.2,<3.0.0a0' jupyter-lsp &&\
-    jupyter labextension install @lckr/jupyterlab_variableinspector &&\
+    jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    
+    jupyter labextension install @lckr/jupyterlab_variableinspector &&\    
+    clean-layer.sh
+
+RUN \
+    conda install -c conda-forge jupyterlab-git &&\
+    jupyter labextension install neptune-notebooks &&\
+    jupyter labextension install @jupyterlab/github &&\
+    clean-layer.sh
+
+RUN \
     jupyter labextension install jupyterlab-spreadsheet &&\
     clean-layer.sh
 
@@ -71,6 +71,10 @@ RUN \
     conda install -c conda-forge lightgbm &&\
     clean-layer.sh
 
+RUN \
+    conda install -c conda-forge ipympl  &&\
+    jupyter lab build &&\
+    clean-layer.sh
 
 COPY scripts/users_list.txt /tmp/users_list.txt
 RUN newusers /tmp/users_list.txt &&\
