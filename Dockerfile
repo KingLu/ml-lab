@@ -76,6 +76,9 @@ RUN \
     jupyter lab build &&\
     clean-layer.sh
 
+#Solve  matplotlib's Chinese character display problem
+#font file form https://www.fontpalace.com/font-download/simhei/
+COPY fonts/SimHei.ttf /opt/conda/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/
 COPY scripts/users_list.txt /tmp/users_list.txt
 RUN newusers /tmp/users_list.txt &&\
     clean-layer.sh
