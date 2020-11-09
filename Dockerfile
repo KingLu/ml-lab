@@ -3,7 +3,7 @@ FROM continuumio/anaconda3:2020.07
 #docker build -t u2509/mllab:base u2509/mllab:yyyymmdd .
 #docker run -d -it -p 8000:8000  u2509/mllab:base
 
-COPY conda/condarc /root/.condarc
+#COPY conda/condarc /root/.condarc
 COPY scripts/clean_layer.sh /usr/bin/clean-layer.sh
 COPY scripts/jupyterhub_init.sh /usr/bin/jupyterhub_init.sh
 
@@ -26,10 +26,8 @@ RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
     clean-layer.sh
 
 
-RUN \
-    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple &&\
-    conda install nodejs=10.13.0 &&\
-    npm config set registry https://registry.npm.taobao.org/ &&\
+RUN \    
+    conda install nodejs=14.14.0 &&\    
     npm install -g configurable-http-proxy &&\
     conda install -c conda-forge jupyterhub &&\
     conda install -c conda-forge jupyterlab &&\
@@ -77,7 +75,7 @@ RUN \
 
 RUN \
     conda create --name python39 python=3.9 &&\
-    conda create --name python37 python=3.7 &&\
+    conda create --name python27 python=2.7 &&\
     conda create --name python38 python=3.8 &&\
     conda create --name python36 python=3.6 &&\
     clean-layer.sh
