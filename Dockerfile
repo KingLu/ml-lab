@@ -1,7 +1,7 @@
 FROM continuumio/anaconda3:2020.07
 
-#docker build -t u2509/mllab .
-#docker run -d -it -p 8000:8000  u2509/mllab
+#docker build -t u2509/mllab:base u2509/mllab:yyyymmdd .
+#docker run -d -it -p 8000:8000  u2509/mllab:base
 
 COPY conda/condarc /root/.condarc
 COPY scripts/clean_layer.sh /usr/bin/clean-layer.sh
@@ -68,12 +68,18 @@ RUN \
 
 RUN \
     conda install -c conda-forge xgboost &&\
-    conda install -c conda-forge lightgbm &&\
     clean-layer.sh
 
 RUN \
     conda install -c conda-forge ipympl  &&\
     jupyter lab build &&\
+    clean-layer.sh
+
+RUN \
+    conda create --name python39 python=3.9 &&\
+    conda create --name python37 python=3.7 &&\
+    conda create --name python38 python=3.8 &&\
+    conda create --name python36 python=3.6 &&\
     clean-layer.sh
 
 #Solve  matplotlib's Chinese character display problem
