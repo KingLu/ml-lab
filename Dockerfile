@@ -1,6 +1,6 @@
 FROM continuumio/anaconda3:2020.07
 
-#docker build -t u2509/mllab:base u2509/mllab:yyyymmdd .
+#docker build -t u2509/mllab:base -t u2509/mllab:yyyymmdd .
 #docker run -d -it -p 8000:8000  u2509/mllab:base
 
 #COPY conda/condarc /root/.condarc
@@ -28,6 +28,10 @@ RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
 RUN \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - &&\
     apt-get install -y nodejs &&\
+    clean-layer.sh
+
+RUN \
+    conda update conda &&\
     clean-layer.sh
 
 RUN \          
