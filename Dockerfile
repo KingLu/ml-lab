@@ -32,6 +32,7 @@ RUN \
 
 RUN \
     conda update conda &&\
+    conda update anaconda &&\
     clean-layer.sh
 
 RUN \          
