@@ -25,9 +25,12 @@ RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
     git subversion &&\
     clean-layer.sh
 
+RUN \
+    curl -sL https://deb.nodesource.com/setup_lts.x | bash - &&\
+    apt-get install -y nodejs &&\
+    clean-layer.sh
 
-RUN \    
-    conda install nodejs=14.14.0 &&\    
+RUN \          
     npm install -g configurable-http-proxy &&\
     conda install -c conda-forge jupyterhub &&\
     conda install -c conda-forge jupyterlab &&\
