@@ -11,9 +11,12 @@ SHELL ["conda", "run", "-n", "dataScience38", "/bin/bash", "-c"]
 
 RUN \     
     pip install ipykernel &&\
-    conda install -c conda-forge lightgbm &&\
     python -m ipykernel install --name dataScience38 &&\
     clean-layer.sh
+
+RUN \
+    conda install -c conda-forge lightgbm &&\   
+    clean-layer.sh    
 
 RUN \    
     conda create -n machinelearning38 --clone python38  &&\
@@ -22,11 +25,13 @@ RUN \
 SHELL ["conda", "run", "-n", "machinelearning38", "/bin/bash", "-c"]
 
 RUN \     
-    pip install ipykernel &&\
-    conda install -c conda-forge lightgbm &&\
+    pip install ipykernel &&\    
     python -m ipykernel install --name machinelearning38 &&\
     clean-layer.sh
 
+RUN \
+    conda install -c conda-forge tensorflow &&\   
+    clean-layer.sh   
 
 EXPOSE 8000
 ENTRYPOINT [ "jupyterhub_init.sh" ]
