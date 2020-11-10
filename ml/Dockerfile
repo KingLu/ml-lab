@@ -1,4 +1,4 @@
-FROM u2509/mllab:base
+FROM u2509/mllab:micro
 
 #docker build -t u2509/mllab:dt-ml-py3.8 .
 #docker run -d -it -p 8003:8000  u2509/mllab:dt-ml-py3.8 ml-lab-data
