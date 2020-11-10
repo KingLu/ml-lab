@@ -44,6 +44,11 @@ RUN \
 COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py 
 
 RUN \
+    pip install pyecharts &&\
+    pip install --upgrade python-gitlab &&\
+    clean-layer.sh
+
+RUN \
     conda install -c conda-forge ipympl  &&\
     jupyter lab build &&\
     clean-layer.sh
