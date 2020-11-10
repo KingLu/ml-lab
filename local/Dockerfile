@@ -44,8 +44,48 @@ RUN \
 COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py 
 
 RUN \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
+    jupyter labextension install @jupyterlab/toc &&\ 
+    jupyter labextension install @aquirdturtle/collapsible_headings &&\
+    jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    
+    jupyter labextension install @lckr/jupyterlab_variableinspector &&\    
+    clean-layer.sh
+
+RUN \
+    conda install -c conda-forge jupyterlab-git &&\
+    jupyter labextension install neptune-notebooks &&\
+    jupyter labextension install @jupyterlab/github &&\
+    clean-layer.sh
+
+RUN \
+    jupyter labextension install jupyterlab-spreadsheet &&\
+    clean-layer.sh
+
+RUN \
+    pip install jupyterlab_sql &&\
+    jupyter serverextension enable jupyterlab_sql --py --sys-prefix &&\
+    jupyter lab build &&\
+    clean-layer.sh
+
+RUN \
+    pip install pyecharts &&\
+    pip install --upgrade python-gitlab &&\
+    clean-layer.sh
+
+RUN \
+    conda install -c conda-forge xgboost &&\
+    clean-layer.sh
+
+RUN \
     conda install -c conda-forge ipympl  &&\
     jupyter lab build &&\
+    clean-layer.sh
+
+RUN \
+    conda create --name python39 python=3.9 &&\
+    conda create --name python27 python=2.7 &&\
+    conda create --name python38 python=3.8 &&\
+    conda create --name python36 python=3.6 &&\
     clean-layer.sh
 
 #Solve  matplotlib's Chinese character display problem
