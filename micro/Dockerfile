@@ -8,17 +8,14 @@ RUN \
     jupyter labextension install @jupyterlab/toc &&\ 
     jupyter labextension install @aquirdturtle/collapsible_headings &&\
     jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    
-    jupyter labextension install @lckr/jupyterlab_variableinspector &&\    
+    jupyter labextension install @lckr/jupyterlab_variableinspector &&\ 
+    jupyter labextension install jupyterlab-spreadsheet &&\   
     clean-layer.sh
 
 RUN \
-    conda install -c conda-forge jupyterlab-git &&\
-    jupyter labextension install neptune-notebooks &&\    
+    conda install -c conda-forge jupyterlab-git &&\   
     clean-layer.sh
 
-RUN \
-    jupyter labextension install jupyterlab-spreadsheet &&\
-    clean-layer.sh
 
 EXPOSE 8000
 ENTRYPOINT [ "jupyterhub_init.sh" ]
