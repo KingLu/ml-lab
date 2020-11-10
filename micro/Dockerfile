@@ -13,8 +13,7 @@ RUN \
 
 RUN \
     conda install -c conda-forge jupyterlab-git &&\
-    jupyter labextension install neptune-notebooks &&\
-    jupyter labextension install @jupyterlab/github &&\
+    jupyter labextension install neptune-notebooks &&\    
     clean-layer.sh
 
 RUN \
