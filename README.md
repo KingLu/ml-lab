@@ -11,7 +11,8 @@ jupyterhub jupyterlab pyecharts python-gitlab ipympl
 **micro**   
 FROM u2509/mllab:base  
 install jupyter labextensions,include   
-```jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
+```
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
     jupyter labextension install @jupyterlab/toc &&\ 
     jupyter labextension install @aquirdturtle/collapsible_headings &&\
     jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    
@@ -19,4 +20,13 @@ install jupyter labextensions,include
     conda install -c conda-forge jupyterlab-git &&\
     jupyter labextension install neptune-notebooks &&\
     jupyter labextension install @jupyterlab/github &&\
-    jupyter labextension install jupyterlab-spreadsheet &&\```
+    jupyter labextension install jupyterlab-spreadsheet
+```   
+## how to use
+1. create container
+`docker run -d -it -p 8001:8000  u2509/mllab ml-lab-data`
+1. use the system  
+http://127.0.0.1:8001  
+>**user**:u2509  
+**password**:2509@ml
+
