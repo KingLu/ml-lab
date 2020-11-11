@@ -1,7 +1,7 @@
 FROM u2509/mllab:base
 
 #docker build -t u2509/mllab:micro .
-#docker run -d -it -p 8003:8000  u2509/mllab:micro ml-lab-data
+#docker run -d -it -p 8002:8000 --name ml-lab-micro  u2509/mllab:micro 
 
 RUN \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
@@ -13,7 +13,8 @@ RUN \
     clean-layer.sh
 
 RUN \
-    conda install -c conda-forge jupyterlab-git &&\   
+    conda install -c conda-forge jupyterlab-git &&\ 
+    jupyter lab build &&\  
     clean-layer.sh
 
 

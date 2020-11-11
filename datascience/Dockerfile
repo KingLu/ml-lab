@@ -1,7 +1,7 @@
 FROM u2509/mllab:micro
 
-#docker build -t u2509/mllab:datasci-3.8 .
-#docker run -d -it -p 8001:8000  u2509/mllab:datasci-3.8 ml-lab-data
+#docker build -t u2509/mllab:dt .
+#docker run -d -it -p 8001:8000 --name ml-lab-dt  u2509/mllab:dt 
 
 RUN \
     conda install -c conda-forge lightgbm &&\   

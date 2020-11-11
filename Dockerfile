@@ -1,7 +1,7 @@
 FROM continuumio/anaconda3:2020.07
 
 #docker build -t u2509/mllab:base -t u2509/mllab:yyyymmdd .
-#docker run -d -it -p 8000:8000  u2509/mllab:base
+#docker run -d -it -p 8000:8000 --name ml-lab-base u2509/mllab:base
 
 #COPY conda/condarc /root/.condarc
 COPY scripts/clean_layer.sh /usr/bin/clean-layer.sh
