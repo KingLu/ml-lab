@@ -27,6 +27,6 @@ install jupyter labextensions,include
 `docker run -d -it -p 8001:8000 --name ml-lab  u2509/mllab`
 1. use the system  
 http://127.0.0.1:8001  
->**user**:u2509  
-**password**:2509@ml
+>**user**:ml01  
+>**password**:ml01@ml
 
