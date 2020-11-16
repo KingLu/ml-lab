@@ -1,7 +1,7 @@
 FROM u2509/mllab:micro
 
-#docker build -t ml01/mllab:latest .
-#docker run -d -it -p 8001:8000 --name ml-lab  ml01/mllab
+#docker build -t u2509/mllab:latest .
+#docker run -d -it -p 8001:8000 --name ml-lab  u2509/mllab
 
 RUN \
     conda install -c conda-forge xgboost &&\   
