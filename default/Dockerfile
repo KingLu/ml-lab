@@ -9,10 +9,10 @@ RUN \
 
 RUN \
     cd /tmp  &&\ 
-    mkdir -p /home/ml01/matplotlib &&\  
+    mkdir -p /home/ml01/matplotlib/doc &&\  
     git clone https://github.com/matplotlib/matplotlib.git &&\   
     cp -r matplotlib/examples /home/ml01/matplotlib/examples &&\   
-    cp -r matplotlib/tutorials /home/ml01/matplotlib/tutorials &&\   
+    cp -r matplotlib/tutorials /home/ml01/tutorials &&\    
     clean-layer.sh 
 
 RUN \
