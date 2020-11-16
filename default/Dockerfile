@@ -13,6 +13,7 @@ RUN \
     git clone https://github.com/matplotlib/matplotlib.git &&\   
     cp -r matplotlib/examples /home/ml01/matplotlib/examples &&\   
     cp -r matplotlib/tutorials /home/ml01/tutorials &&\    
+    cp -r matplotlib/doc/_static /home/ml01/matplotlib/doc/_static &&\  
     clean-layer.sh 
 
 RUN \
