@@ -8,7 +8,8 @@ RUN \
     clean-layer.sh    
 
 RUN \
-    cd /tmp  &&\   
+    cd /tmp  &&\ 
+    mkdir -p /home/ml01/matplotlib &&\  
     git clone https://github.com/matplotlib/matplotlib.git &&\   
     cp -r matplotlib/examples /home/ml01/matplotlib/examples &&\   
     cp -r matplotlib/tutorials /home/ml01/matplotlib/tutorials &&\   
