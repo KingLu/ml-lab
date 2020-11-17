@@ -998,7 +998,7 @@ c.Spawner.default_url = '/lab'
 #  
 #  Defaults to an empty set, in which case no user has admin access.
 #  Default: set()
-c.Authenticator.admin_users = {'u2509'}
+c.Authenticator.admin_users = {'ml01'}
 
 ## The max age (in seconds) of authentication info before forcing a refresh of
 #  user auth info.
