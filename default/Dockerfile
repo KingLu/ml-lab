@@ -9,19 +9,19 @@ RUN \
 
 RUN \
     cd /tmp  &&\ 
-    mkdir -p /home/ml01/matplotlib/doc &&\  
+    mkdir -p /opt/jupyterhub/ml01/matplotlib/doc &&\  
     git clone https://github.com/matplotlib/matplotlib.git &&\   
-    cp -r matplotlib/examples /home/ml01/matplotlib/examples &&\   
-    cp -r matplotlib/tutorials /home/ml01/matplotlib/tutorials &&\    
-    cp -r matplotlib/doc/_static /home/ml01/matplotlib/doc/_static &&\  
+    cp -r matplotlib/examples /opt/jupyterhub/ml01/matplotlib/examples &&\   
+    cp -r matplotlib/tutorials /opt/jupyterhub/ml01/matplotlib/tutorials &&\    
+    cp -r matplotlib/doc/_static /opt/jupyterhub/ml01/matplotlib/doc/_static &&\  
     clean-layer.sh 
 
 RUN \
     cd /tmp  &&\   
     git clone https://github.com/pyecharts/pyecharts-gallery.git &&\   
-    cp -r pyecharts-gallery /home/ml01/pyecharts-gallery &&\
-    rm /home/ml01/pyecharts-gallery/.git -rf  &&\
-    rm /home/ml01/pyecharts-gallery/.github -rf  &&\
+    cp -r pyecharts-gallery /opt/jupyterhub/ml01/pyecharts-gallery &&\
+    rm /opt/jupyterhub/ml01/pyecharts-gallery/.git -rf  &&\
+    rm /opt/jupyterhub/ml01/pyecharts-gallery/.github -rf  &&\
     clean-layer.sh     
 
 EXPOSE 8000
