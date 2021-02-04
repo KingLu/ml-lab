@@ -25,9 +25,6 @@ RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
     git subversion &&\
     clean-layer.sh
 
-RUN apt-get update --fix-missing && apt-get install -y build-essential python3-dev &&\
-    clean-layer.sh
-
 RUN \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - &&\
     apt-get install -y nodejs &&\
@@ -47,10 +44,8 @@ RUN \
 COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py 
 
 RUN \
-    pip install pyecharts &&\
-    pip install --upgrade python-gitlab &&\
-    pip install pycrypto  &&\
-    pip install pycryptodome  &&\
+    pip install -U pyecharts &&\
+    pip install -U python-gitlab &&\
     clean-layer.sh
 
 RUN \
