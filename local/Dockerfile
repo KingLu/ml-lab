@@ -1,4 +1,4 @@
-FROM u2509/mllab:base
+FROM u2509/mllab:micro
 
 #docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210204 ./local
 #docker run -d -it -p 8000:8000  u2509/mllab:base
