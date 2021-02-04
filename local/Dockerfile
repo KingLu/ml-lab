@@ -1,65 +1,7 @@
-FROM continuumio/anaconda3:2020.07
+FROM u2509/mllab:base
 
-#docker build -t u2509/mllab:base -t u2509/mllab:yyyymmdd .
+#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210204 ./local
 #docker run -d -it -p 8000:8000  u2509/mllab:base
-
-#COPY conda/condarc /root/.condarc
-COPY scripts/clean_layer.sh /usr/bin/clean-layer.sh
-COPY scripts/jupyterhub_init.sh /usr/bin/jupyterhub_init.sh
-
-RUN \
-    chmod 755 /usr/bin/jupyterhub_init.sh && \
-    chmod 755 /usr/bin/clean-layer.sh 
-
-RUN \
-    apt-get update &&\
-    apt-get install -y locales &&\
-    sed -ie 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/g' /etc/locale.gen &&\
-    locale-gen &&\
-    clean-layer.sh
-
-ENV LANG zh_CN.UTF-8
-
-
-RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
-    git subversion &&\
-    clean-layer.sh
-
-RUN \
-    curl -sL https://deb.nodesource.com/setup_lts.x | bash - &&\
-    apt-get install -y nodejs &&\
-    clean-layer.sh
-
-RUN \
-    conda update conda &&\
-    conda update anaconda &&\
-    clean-layer.sh
-
-RUN \          
-    npm install -g configurable-http-proxy &&\
-    conda install -c conda-forge jupyterhub &&\
-    conda install -c conda-forge jupyterlab &&\
-    mkdir -p /opt/jupyterhub/config &&\
-    clean-layer.sh
-COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py 
-
-RUN \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
-    jupyter labextension install @jupyterlab/toc &&\ 
-    jupyter labextension install @aquirdturtle/collapsible_headings &&\
-    jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    
-    jupyter labextension install @lckr/jupyterlab_variableinspector &&\    
-    clean-layer.sh
-
-RUN \
-    conda install -c conda-forge jupyterlab-git &&\
-    jupyter labextension install neptune-notebooks &&\
-    jupyter labextension install @jupyterlab/github &&\
-    clean-layer.sh
-
-RUN \
-    jupyter labextension install jupyterlab-spreadsheet &&\
-    clean-layer.sh
 
 RUN \
     pip install jupyterlab_sql &&\
@@ -68,8 +10,16 @@ RUN \
     clean-layer.sh
 
 RUN \
-    pip install pyecharts &&\
-    pip install --upgrade python-gitlab &&\
+    pip install -U pyecharts &&\
+    pip install -U python-gitlab &&\
+    pip install -U pycrypto  &&\
+    pip install -U pycryptodome  &&\
+    clean-layer.sh
+
+RUN \
+    pip install -U pywpsrpc  &&\
+    pip install -U docx-mailmerge  &&\
+    pip install -U python-docx &&\
     clean-layer.sh
 
 RUN \
@@ -79,6 +29,16 @@ RUN \
 RUN \
     conda install -c conda-forge ipympl  &&\
     jupyter lab build &&\
+    clean-layer.sh
+
+#Libraries for Data Visualization
+RUN \
+    pip install -U seaborn &&\
+    pip install -U plotly &&\
+    pip install -U bokeh &&\
+    pip install -U altair &&\
+    pip install -U folium  &&\
+    pip install -U ggplot &&\
     clean-layer.sh
 
 RUN \
