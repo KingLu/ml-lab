@@ -1,4 +1,4 @@
-FROM continuumio/anaconda3:2020.07
+FROM continuumio/anaconda3:2020.11
 
 #docker build -t u2509/mllab:base -t u2509/mllab:yyyymmdd .
 #docker run -d -it -p 8000:8000 --name ml-lab-base u2509/mllab:base
@@ -25,6 +25,9 @@ RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
     git subversion &&\
     clean-layer.sh
 
+RUN apt-get update --fix-missing && apt-get install -y build-essential python3-dev &&\
+    clean-layer.sh
+
 RUN \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - &&\
     apt-get install -y nodejs &&\
@@ -46,6 +49,8 @@ COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py
 RUN \
     pip install pyecharts &&\
     pip install --upgrade python-gitlab &&\
+    pip install pycrypto  &&\
+    pip install pycryptodome  &&\
     clean-layer.sh
 
 RUN \
