@@ -1,16 +1,9 @@
 FROM u2509/mllab:micro
 
-#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210204 ./local
+#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210218 ./local
 #docker run -d -it -p 8000:8000  u2509/mllab:base
 
-RUN \
-    pip install jupyterlab_sql &&\
-    jupyter serverextension enable jupyterlab_sql --py --sys-prefix &&\
-    jupyter lab build &&\
-    clean-layer.sh
-
-RUN \
-    pip install -U pyecharts &&\
+RUN \    
     pip install -U python-gitlab &&\
     pip install -U pycrypto  &&\
     pip install -U pycryptodome  &&\
@@ -33,12 +26,29 @@ RUN \
 
 #Libraries for Data Visualization
 RUN \
+    pip install -U pyecharts &&\
     pip install -U seaborn &&\
     pip install -U plotly &&\
     pip install -U bokeh &&\
     pip install -U altair &&\
     pip install -U folium  &&\
     pip install -U ggplot &&\
+    pip install -U bokeh &&\
+    clean-layer.sh
+
+#Libraries for map
+RUN \
+    pip install echarts-countries-pypkg &&\
+    pip install echarts-china-provinces-pypkg &&\
+    pip install echarts-china-cities-pypkg &&\
+    pip install echarts-china-counties-pypkg &&\
+    pip install echarts-china-misc-pypkg &&\
+    clean-layer.sh
+
+#Libraries for database
+RUN \
+    pip install -U pymysql &&\
+    pip install -U python-sybase &&\
     clean-layer.sh
 
 RUN \
