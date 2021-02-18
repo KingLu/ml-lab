@@ -10,4 +10,5 @@ RUN \
     pip install -U pyecharts &&\
     pip install -U python-gitlab &&\
     pip install -U pycrypto  &&\
-    pip install -U pycryptodome 
+    pip install -U pycryptodome &&\
+    rm -rf "${HOME}/.local"
