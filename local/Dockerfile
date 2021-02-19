@@ -1,7 +1,10 @@
 FROM u2509/mllab:micro
 
-#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210218 ./local
+#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210218 -f local/Dockerfile .
 #docker run -d -it -p 8000:8000  u2509/mllab:base
+RUN \
+    pip install -U sudospawner &&\
+    clean-layer.sh
 
 RUN \    
     pip install -U python-gitlab &&\
@@ -19,6 +22,7 @@ RUN \
     conda install -c conda-forge xgboost &&\
     clean-layer.sh
 
+#ipympl enables the interactive features of matplotlib in the Jupyter notebook and in JupyterLab
 RUN \
     conda install -c conda-forge ipympl  &&\
     jupyter lab build &&\
@@ -48,7 +52,7 @@ RUN \
 #Libraries for database
 RUN \
     pip install -U pymysql &&\
-    pip install -U python-sybase &&\
+    pip install -U pyodbc &&\
     clean-layer.sh
 
 RUN \
