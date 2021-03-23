@@ -21,7 +21,7 @@ RUN \
 ENV LANG zh_CN.UTF-8
 
 
-RUN apt-get update --fix-missing && apt-get install -y wget curl vim \
+RUN apt-get update --fix-missing && apt-get install -y wget curl vim cron\
     git subversion &&\
     clean-layer.sh
 
