@@ -53,6 +53,9 @@ RUN \
 RUN \
     pip install -U pymysql &&\
     pip install -U pyodbc &&\
+    pip install -U sqlanydb &&\
+    pip install -U sqlalchemy-sqlany &&\
+    pip install -U cx_Oracle &&\
     clean-layer.sh
 
 RUN \
