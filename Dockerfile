@@ -1,6 +1,6 @@
-FROM continuumio/anaconda3:2020.11
+FROM continuumio/anaconda3:2021.05
 
-#docker build -t u2509/mllab:base -t u2509/mllab:yyyymmdd .
+#-"" -t u2509/mllab:yyyymmdd .
 #docker run -d -it -p 8000:8000 --name ml-lab-base u2509/mllab:base
 
 #COPY conda/condarc /root/.condarc
@@ -49,8 +49,7 @@ RUN \
     clean-layer.sh
 
 RUN \
-    conda install -c conda-forge ipympl  &&\
-    jupyter lab build &&\
+    conda install -c conda-forge ipympl  &&\   
     clean-layer.sh
 
 #Solve  matplotlib's Chinese character display problem
