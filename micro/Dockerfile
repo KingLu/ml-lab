@@ -1,6 +1,7 @@
 FROM u2509/mllab:base
 
-#docker build -t u2509/mllab:micro ./micro
+#docker build -t u2509/mllab:micro -f micro/Dockerfile .
+#docker push u2509/mllab:micro
 #docker run -d -it -p 8002:8000 --name ml-lab-micro  u2509/mllab:micro 
 RUN \
     pip install -U pip setuptools &&\

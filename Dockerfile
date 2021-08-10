@@ -1,6 +1,7 @@
 FROM continuumio/anaconda3:2021.05
 
-#-"" -t u2509/mllab:yyyymmdd .
+#docker build -t u2509/mllab:base .
+#docker push u2509/mllab:base
 #docker run -d -it -p 8000:8000 --name ml-lab-base u2509/mllab:base
 
 #COPY conda/condarc /root/.condarc
