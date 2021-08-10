@@ -10,8 +10,7 @@ RUN apt-get update --fix-missing && apt-get install -y build-essential python3-d
     clean-layer.sh
 
 RUN \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\
-    jupyter lab build &&\     
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
     jupyter labextension install @jupyterlab/toc &&\ 
     jupyter labextension install @aquirdturtle/collapsible_headings &&\
     jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    

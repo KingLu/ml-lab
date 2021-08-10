@@ -1,6 +1,6 @@
 FROM u2509/mllab:micro
 
-#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc20210218 -f local/Dockerfile .
+#docker build -t u2509/mllab:bjabc -t u2509/mllab:bjabc202108112 -f local/Dockerfile .
 #docker run -d -it -p 8000:8000  u2509/mllab:base
 RUN \
     pip install -U sudospawner &&\
@@ -19,7 +19,11 @@ RUN \
     clean-layer.sh
 
 RUN \
-    conda install -c conda-forge xgboost &&\
+    conda update --all &&\
+    clean-layer.sh    
+
+RUN \
+    pip install -U  xgboost &&\
     clean-layer.sh
 
 #ipympl enables the interactive features of matplotlib in the Jupyter notebook and in JupyterLab
@@ -57,6 +61,25 @@ RUN \
     pip install -U sqlalchemy-sqlany &&\
     pip install -U cx_Oracle &&\
     clean-layer.sh
+
+RUN \
+    apt-get update &&\
+    apt-get install -y zlib1g zip unzip &&\
+    pip install -U pyminizip &&\
+    clean-layer.sh     
+
+RUN \
+    pip install -U lightgbm &&\
+    clean-layer.sh    
+
+RUN \    
+    apt-get install -y pandoc&&\
+    apt-get install -y texlive-xetex texlive-fonts-recommended texlive-latex-recommended &&\
+    clean-layer.sh  
+
+RUN \
+    apt-get update && upgrade\    
+    clean-layer.sh  
 
 RUN \
     conda create --name python39 python=3.9 &&\
