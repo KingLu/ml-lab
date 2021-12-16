@@ -11,21 +11,22 @@ RUN apt-get update --fix-missing && apt-get install -y build-essential python3-d
     clean-layer.sh
 
 RUN \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager &&\    
-    jupyter labextension install @jupyterlab/toc &&\ 
-    jupyter labextension install @aquirdturtle/collapsible_headings &&\
-    jupyter labextension install @krassowski/jupyterlab_go_to_definition &&\    
-    jupyter labextension install @lckr/jupyterlab_variableinspector &&\ 
-    jupyter labextension install jupyterlab-spreadsheet &&\  
-    jupyter labextension install neptune-notebooks &&\
-    jupyter labextension install @jupyterlab/github &&\ 
+    conda install -n base -c conda-forge jupyterlab_widgets  &&\  
+    conda install -n base -c conda-forge ipywidgets  &&\  
+    clean-layer.sh
+
+
+RUN \
+    pip install -U jupyterlab-git &&\ 
+    pip install -U jupyter_contrib_nbextensions &&\     
     clean-layer.sh
 
 RUN \
-    conda install -c conda-forge jupyterlab-git &&\ 
-    jupyter lab build &&\  
+    pip install -U jupyterlab-language-pack-zh-CN &&\     
     clean-layer.sh
 
+RUN \
+    jupyter nbextension enable --py widgetsnbextension
 
 EXPOSE 8000
 ENTRYPOINT [ "jupyterhub_init.sh" ]
