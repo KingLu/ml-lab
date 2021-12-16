@@ -5,7 +5,7 @@ This a docker image for machine learning and data science.
 The docker hub url is [https://hub.docker.com/repository/docker/u2509/mllab](https://hub.docker.com/repository/docker/u2509/mllab)
 ### docker tags
 **base**  
-FROM continuumio/anaconda3:2020.07  
+FROM continuumio/anaconda3:2021.11  
 install wget curl vim    
 jupyterhub jupyterlab pyecharts python-gitlab ipympl  
 **micro**   

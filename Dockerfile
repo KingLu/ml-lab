@@ -1,4 +1,4 @@
-FROM continuumio/anaconda3:2021.05
+FROM continuumio/anaconda3:2021.11
 
 #docker build -t u2509/mllab:base .
 #docker push u2509/mllab:base
@@ -26,36 +26,36 @@ RUN apt-get update --fix-missing && apt-get install -y wget curl vim cron\
     git subversion &&\
     clean-layer.sh
 
-RUN \
+RUN \  
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - &&\
-    apt-get install -y nodejs &&\
+    apt-get install -y nodejs &&\    
+    node --version &&\
     clean-layer.sh
 
 RUN \
-    conda update conda &&\
-    conda update anaconda &&\
-    clean-layer.sh
-
-RUN \          
+    npm config set registry https://registry.npm.taobao.org \
+    npm --version  &&\   
+    npm install npm@latest -g  &&\ 
+    npm --version  &&\  
     npm install -g configurable-http-proxy &&\
-    conda install -c conda-forge jupyterhub &&\
-    conda install -c conda-forge jupyterlab &&\
+    clean-layer.sh
+    
+RUN \
+    pip install -U jupyterhub &&\
+    pip install -U  jupyterlab &&\
     mkdir -p /opt/jupyterhub/config &&\
     clean-layer.sh
 COPY conda/jupyterhub_config.py /opt/jupyterhub/config/jupyterhub_config.py 
 
-RUN \
-    pip install -U pyecharts &&\
-    pip install -U python-gitlab &&\
-    clean-layer.sh
 
 RUN \
-    conda install -c conda-forge ipympl  &&\   
+    pip install -U ipympl  &&\   
     clean-layer.sh
 
 #Solve  matplotlib's Chinese character display problem
 #font file form https://www.fontpalace.com/font-download/simhei/
 COPY fonts/SimHei.ttf /opt/conda/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/
+COPY fonts/SimHei.ttf /opt/conda/lib/python3.9/site-packages/matplotlib/mpl-data/fonts/ttf/
 COPY scripts/users_list.txt /tmp/users_list.txt
 RUN newusers /tmp/users_list.txt &&\
     clean-layer.sh
